@@ -2,32 +2,26 @@
 <html>
 <head>
     <!-- css for metro styling -->
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='metro-bootstrap.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='metro-bootstrap-responsive.css') }}"
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 
     <!-- javescript for metro style buttons -->
-    <script src="{{ url_for('static', filename='metro-button-set.js') }}"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 
-<body class="metro">
+<body>
     <div class="container">
         <header>
-            <div class="span3">
+            <div>
                 <h1>JustinTA</h1>
             </div>
-            <div class="grid fluid">
-                <div class="row">
-                    <div class="span2 button-set">
-                        {% for l in LST: %}
-                            {% if l == 'index' %}
-                                <a href="{{ url_for("default." + l) }}" class="button large primary">home</a>
-                            {% else %}
-                                <a href="{{ url_for("default." + l) }}" class="button large primary">{{ l }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+            <div>
+                {% for l in LST: %}
+                    {% if l == 'index' %}
+                        <a href="{{ url_for("default." + l) }}" class="button large primary">home</a>
+                    {% else %}
+                        <a href="{{ url_for("default." + l) }}" class="button large primary">{{ l }}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
         </header>
 
@@ -38,23 +32,17 @@
         </div>
 
         <footer>
-                <div class="grid fluid">
-                    <div class="row">
-
-                        <div class="span4 button-set">
-                            {% for s in SOCIALLIST %}
-                                {% if s == 'linkedin' %}
-                                    <a href="http://www.{{ s }}.com/profile/view?id=143851789" target="_blank" class="button small info">{{ s }}</a>
-                                {% elif s == 'github' %}
-                                    <a href="http://www.{{ s }}.com/justinta89" target="_blank" class="button small info">{{ s }}</a>
-                                {% else %}
-                                    <a href="http://www.{{ s }}.com/cowpunk1" target="_blank" class="button small info">{{ s }}</a>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                    </div> <!-- row -->
-                </div><!-- grid fluid -->
+            <div>
+            {% for s in SOCIALLIST %}
+                {% if s == 'linkedin' %}
+                    <a href="http://www.{{ s }}.com/profile/view?id=143851789" target="_blank" class="button small info">{{ s }}</a>
+                {% elif s == 'github' %}
+                    <a href="http://www.{{ s }}.com/justinta89" target="_blank" class="button small info">{{ s }}</a>
+                {% else %}
+                    <a href="http://www.{{ s }}.com/cowpunk1" target="_blank" class="button small info">{{ s }}</a>
+                {% endif %}
+            {% endfor %}
+            </div>
         </footer><!-- footer -->
     </div>
 </body>
