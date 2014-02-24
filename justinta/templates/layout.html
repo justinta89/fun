@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- css for metro styling -->
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 
-    <!-- javescript for metro style buttons -->
-    <title>{% block title %}{% endblock %}</title>
+<head>
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap.css') }}">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap-responsive.css') }}">
+
+    <!-- bootstrap JS -->
+    <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='docs/js/metro.min.js') }}"></script>
+
+    <title>{% block title %}Default Title{% endblock %}</title>
 </head>
 
-<body>
+<body class="metro">
     <div class="container">
-        <header>
-            <div>
-                <h1>JustinTA</h1>
-            </div>
-            <div>
-                {% for l in LST: %}
-                    {% if l == 'index' %}
-                        <a href="{{ url_for("default." + l) }}" class="button large primary">home</a>
-                    {% else %}
-                        <a href="{{ url_for("default." + l) }}" class="button large primary">{{ l }}</a>
-                    {% endif %}
-                {% endfor %}
+
+        <!-- header -->
+        <header class="margin20 nrm nlm">
+            <div class="clearfix">
+                <div class="place-left">
+                    <h1>JustinTA</h1>
+                    <h3>sec stuff is fun</h3>
+                </div>
+                <div class="container padding20">
+                    <div class="button-set place-right span4">
+                        {% for l in LST: %}
+                            {% if l == 'index' %}
+                            <a href="{{ url_for("default." + l) }}" class="button large info">home</a>
+                            {% else %}
+                            <a href="{{ url_for("default." + l) }}" class="button large info">{{ l }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div id="content">
+        <div class="container">
             {% block body %}
-                stuff.
+            <p>Default Content. Need to change!</p>
             {% endblock body %}
         </div>
 
+       <!-- footer -->
         <footer>
-            <div>
+            <!-- Social Networking links -->
+            <div class="place-left">
             {% for s in SOCIALLIST %}
-                {% if s == 'linkedin' %}
-                    <a href="http://www.{{ s }}.com/profile/view?id=143851789" target="_blank" class="button small info">{{ s }}</a>
-                {% elif s == 'github' %}
-                    <a href="http://www.{{ s }}.com/justinta89" target="_blank" class="button small info">{{ s }}</a>
-                {% else %}
-                    <a href="http://www.{{ s }}.com/cowpunk1" target="_blank" class="button small info">{{ s }}</a>
-                {% endif %}
+                <a href=" {{ SOCIALLIST[s] }}" target="_blank">
+                    <i class="icon-{{ s }}"></i>
+                </a>
             {% endfor %}
             </div>
-        </footer><!-- footer -->
+       </footer>
+
     </div>
 </body>
 </html>

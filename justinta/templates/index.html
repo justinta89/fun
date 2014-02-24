@@ -2,5 +2,25 @@
 {% block title %}justinta{% endblock %}
 
 {% block body %}
-        <p> this is some text for the page.</p>
+<div class="grid fluid">
+    <div class="row">
+        <!--
+        {% for head in headings %}
+        <div class="span4 bg-darkCyan padding5 text-center">
+            <h2 class="fg-white">{{ head }}</h2>
+        </div>
+        {% endfor %}
+        -->
+
+        <div class="span4 bg-darkCyan padding5 text-center">
+            <h2 class="fg-white">Heading thing</h2>
+        </div>
+        <div class="span4 bg-darkCyan padding5 text-center">
+            <h2 class="fg-white">Another heading</h2>
+        </div>
+    </div>
+    <div class="span5">
+        <p>I am not a designer. Don't judge how my site looks on that.</p>
+    </div>
+</div>
 {% endblock body %}
