@@ -2,7 +2,7 @@
 {% block title %}justinta{% endblock %}
 
 {% block body %}
-<div class="grid fluid">
+<div class="grid fluid" style="margin-left: 15%">
     <div class="row">
         <!--
         {% for head in headings %}
@@ -12,15 +12,17 @@
         {% endfor %}
         -->
 
-        <div class="span4 bg-darkCyan padding5 text-center">
+        <div class="span8 bg-darkCyan padding5 text-center">
             <h2 class="fg-white">Heading thing</h2>
         </div>
-        <div class="span4 bg-darkCyan padding5 text-center">
+    </div>
+    <div class="span5 prettyprint">
+        <p>I am not a designer. Don't judge how my site looks on that.</p>
+    </div>
+    <div class="row">
+        <div class="span5 bg-darkCyan padding5 text-center">
             <h2 class="fg-white">Another heading</h2>
         </div>
-    </div>
-    <div class="span5">
-        <p>I am not a designer. Don't judge how my site looks on that.</p>
     </div>
 </div>
 {% endblock body %}

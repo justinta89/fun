@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            <hr />
         </header>
 
         <div class="container">
@@ -45,14 +46,20 @@
         </div>
 
        <!-- footer -->
-        <footer>
+        <footer class="container">
+            <hr />
             <!-- Social Networking links -->
-            <div class="place-left">
+            <div class="place-left span12">
             {% for s in SOCIALLIST %}
                 <a href=" {{ SOCIALLIST[s] }}" target="_blank">
                     <i class="icon-{{ s }}"></i>
                 </a>
             {% endfor %}
+            </div>
+            <div class="place-right">
+                <a href="http://metroui.org.ua" target="_blank">
+                    <p class="tertiary-text-secondary">&copy; 2014 Metro UI CSS</p>
+                </a>
             </div>
        </footer>
 
