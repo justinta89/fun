@@ -1,0 +1,13 @@
+{% extends 'base_admin.html' %}
+
+{% block title %}Admin{% endblock %}
+{% block logout %}
+    <a href="{{ url_for("admin.login") }}" class="button large info">Logout</a>
+{% endblock %}
+{% block body %}
+    <p>This is to create a new post on the main site. </p>
+    <form method='POST'>
+        {{ form.newPost(size=400, placeholder="enter new post") }}<br />
+        {{ form.submit }}
+    </form>
+{% endblock %}

@@ -6,9 +6,6 @@
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap.css') }}">
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap-responsive.css') }}">
 
-    <!-- other CSS -->
-    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/style.css') }}">
-
     <!-- bootstrap JS -->
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
@@ -55,9 +52,9 @@
             <hr />
             <!-- Social Networking links -->
             <div class="place-left">
-            {% for s in SOCIALLIST %}
-                <a href=" {{ SOCIALLIST[s] }}" target="_blank">
-                    <i class="icon-{{ s }}"></i>
+            {% for (k, v) in SOCIALLIST.items() %}
+                <a href="{{ v }}" target="_blank">
+                    <i class="icon-{{ k }}"></i>
                 </a>
             {% endfor %}
             </div>

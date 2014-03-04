@@ -1,0 +1,13 @@
+{% extends 'base_admin.html' %}
+
+{% block title %}Login{% endblock %}
+{% block body %}
+    {% if error %}
+        <h2 class="text-alert">{{ error }}</h2>
+    {% endif %}
+    <form method='POST'>
+        {{ form.username(size=24, maxlength=40, placeholder="Username") }}
+        {{ form.password(size=24, maxlength=40, placeholder="Password") }}
+        {{ form.submit() }}
+    </form>
+{% endblock %}
