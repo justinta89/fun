@@ -1,6 +1,0 @@
-*.pyc
-*.pyo
-*.DS_Store
-*__pycache__*
-db_repository
-.gitignore
