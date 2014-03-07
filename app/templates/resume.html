@@ -21,5 +21,13 @@
             </p>
         </div>
     </div>
+    <div class="row">
+        <div class="place-left">
+            <h3>Coding projects</h3>
+            {% for (k, v) in github.items() %}
+                <p><a href="{{ v }}" class="button small info" target="_blank">{{ k }}</a></p>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}

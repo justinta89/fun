@@ -3,24 +3,15 @@
 
 {% block body %}
 <div class="grid fluid">
+    {% for post in posts %}
     <div class="row">
         <div class="span8 bg-darkCyan padding5 text-center">
-            <h3 class="fg-white">February 24, 2014</h3>
+            <h3 class="fg-white">{{ post.timestamp }}</h3>
         </div>
     </div>
     <div class="span8 readable-text">
-        <p>I am an entry level penetration tester. I am building this site to
-        better understand webdev to better do my job.</p>
+       {{ post }}
     </div>
-    <div class="row">
-        <div class="span5 bg-darkCyan padding5 text-center">
-            <h3 class="fg-white">February 21, 2014</h3>
-        </div>
-    </div>
-    <div class="span5 readable-text">
-        <p>First time stuff going up here. I'm not a designer, lay off the
-        judgment please. Hopefully design will come with time and coordination
-        with a real designer.</p>
-    </div>
+    {% endfor %}
 </div>
 {% endblock body %}

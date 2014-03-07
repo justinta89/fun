@@ -6,8 +6,16 @@
 {% endblock %}
 {% block body %}
     <p>This is to create a new post on the main site. </p>
-    <form method='POST'>
+    <form action="" method='POST'>
+        {{ form.hidden_tag() }}
         {{ form.newPost(size=400, placeholder="enter new post") }}<br />
-        {{ form.submit }}
+        Page:
+        <div class="input-control select span2">
+            <select>
+                <option>main</option>
+                <option>security</option>
+            </select>
+        </div><br />
+        <input class="button info" type="submit" value="post">
     </form>
 {% endblock %}

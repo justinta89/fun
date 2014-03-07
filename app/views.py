@@ -1,41 +1,63 @@
 from flask import Blueprint, render_template, redirect, flash
 from flask import session, url_for, request
+from datetime import date
+from app import db
 from app import constants
 from .forms import LoginForm, updateForm
-from .model import userAdmin
+from .model import userAdmin, Post
 
 
-"""Blueprints"""
+# Blueprints
 default = Blueprint('default', __name__, template_folder='templates')
 admin = Blueprint('admin', __name__, template_folder='templates/admin')
 
 
-"""Default Routes"""
-@default.route('/')
+# Default Routes
+@default.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html', LST = constants.LST, SOCIALLIST = constants.SOCIALLIST)
+    posts = Post.query.all()
+    return render_template('index.html',
+                           LST=constants.LST,
+                           SOCIALLIST=constants.SOCIALLIST,
+                           posts=posts)
 
 
 @default.route('/resume')
 def resume():
-    return render_template('resume.html', LST = constants.LST, SOCIALLIST = constants.SOCIALLIST)
+    github = {
+        'irc': 'https://github.com/justinta89/AL-MTG',
+        'site': 'https://github.com/justinta89/fun'
+    }
+
+    return render_template('resume.html',
+                           LST=constants.LST,
+                           SOCIALLIST=constants.SOCIALLIST,
+                           github=github)
 
 
 @default.route('/security')
 def security():
-    return render_template('security.html', LST = constants.LST, SOCIALLIST = constants.SOCIALLIST)
+    return render_template('security.html',
+                           LST=constants.LST,
+                           SOCIALLIST=constants.SOCIALLIST)
 
 
-"""Admin Routes"""
-@admin.route('/admin')
+# Amin Routes
+@admin.route('/admin', methods=['GET', 'POST'])
 def adminPage():
-
     form = updateForm()
 
-    if 'username' in session:
-        return render_template('admin.html', form=form)
-    else:
-        return redirect(url_for('login'))
+    day = date.today()
+    if form.validate_on_submit():
+        post = Post(body=form.newPost.data,
+                    timestamp=day.strftime("%A %d, %B %Y"))
+        db.session.add(post)
+        db.session.commit()
+        return render_template('admin.html',
+                               form=form)
+
+    return render_template('admin.html',
+                           form=form)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
@@ -58,7 +80,9 @@ def login():
         else:
             error = "Invalid Credentials"
 
-    return render_template('login.html', form=form, error=error)
+    return render_template('login.html',
+                           form=form,
+                           error=error)
 
 
 @admin.route('/logout')

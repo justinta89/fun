@@ -1,0 +1,6 @@
+*.pyc
+*__pycache__*
+*.db
+*.htaccess
+*db_repository*
+*.DS_Store
