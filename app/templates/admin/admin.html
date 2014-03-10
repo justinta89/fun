@@ -4,12 +4,15 @@
 {% block logout %}
     <a href="{{ url_for("admin.login") }}" class="button large info">Logout</a>
 {% endblock %}
+
 {% block body %}
-    <p>This is to create a new post on the main site. </p>
     <form action="" method='POST'>
         {{ form.hidden_tag() }}
-        {{ form.newPost(size=400, placeholder="enter new post") }}<br />
-        Page:
+        <div class="input-control textarea" data-role="input-control">
+            {{ form.title(size=30, placeholder="title") }}<br />
+            <br />
+            {{ form.newPost(size=100, placeholder="enter new post") }}<br />
+        </div>
         <div class="input-control select span2">
             <select>
                 <option>main</option>

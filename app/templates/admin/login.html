@@ -6,8 +6,8 @@
         <h2 class="text-alert">{{ error }}</h2>
     {% endif %}
     <form method='POST'>
-        {{ form.username(size=24, maxlength=40, placeholder="Username") }}
-        {{ form.password(size=24, maxlength=40, placeholder="Password") }}
-        <input type="submit" value="Login">
+        {{ form.username(size=24, maxlength=40, placeholder="username") }}
+        {{ form.password(size=24, maxlength=40, placeholder="password") }}
+        <input type="submit" class="info" value="Login">
     </form>
 {% endblock %}

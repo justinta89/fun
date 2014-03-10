@@ -9,7 +9,7 @@
     <!-- bootstrap JS -->
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='docs/js/metro.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='docs/js/metro/metro.min.js') }}"></script>
 
     <title>{% block title %}Default Title{% endblock %}</title>
 </head>
@@ -33,6 +33,7 @@
                             <a href="{{ url_for("default." + l) }}" class="button large info">{{ l }}</a>
                             {% endif %}
                         {% endfor %}
+                        <a href="{{ url_for("admin.adminPage") }}" class="link info">admin</a>
                     </div>
                 </div>
             </div>

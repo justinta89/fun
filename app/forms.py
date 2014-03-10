@@ -12,4 +12,5 @@ class LoginForm(Form):
 
 class updateForm(Form):
     newPost = TextAreaField('newPost', validators=None)
+    title = TextField('title', validators=[Required()])
     submit = SubmitField('Submit')

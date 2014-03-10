@@ -7,7 +7,10 @@
         <!-- bootstrap JS -->
         <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='docs/js/metro.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='docs/js/metro/metro.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='docs/js/load-metro.js') }}"></script>
+        <script src="{{ url_for('static', filename='docs/js/metro/metro-notify.js') }}"></script>
 
         <title>{% block title %}Default Title{% endblock %}</title>
     </head>
@@ -21,8 +24,9 @@
                         <h1>Admin Portal</h1>
                     </div>
                     <div class="containter padding20">
-                        <div class="place-right button-set span1">
+                        <div class="place-right button-set span3">
                             {% block logout %}{% endblock %}
+                            <a href="{{ url_for("default.index") }}" class="button large info">home</a>
                         </div>
                     </div>
                 </div>

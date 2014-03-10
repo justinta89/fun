@@ -6,11 +6,12 @@
     {% for post in posts %}
     <div class="row">
         <div class="span8 bg-darkCyan padding5 text-center">
-            <h3 class="fg-white">{{ post.timestamp }}</h3>
+            <h3 class="fg-white">{{ post.title }}</h3>
         </div>
     </div>
     <div class="span8 readable-text">
        {{ post }}
+        <br /><h6>{{ post.timestamp }}</h6>
     </div>
     {% endfor %}
 </div>

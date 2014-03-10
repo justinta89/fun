@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, redirect, flash
 from flask import session, url_for, request
-from datetime import date
-from app import db
+from flask.ext.login import login_required, login_user
+from sqlalchemy import desc, asc
+from datetime import datetime, date
+from app import db, lm
 from app import constants
 from .forms import LoginForm, updateForm
 from .model import userAdmin, Post
@@ -15,7 +17,7 @@ admin = Blueprint('admin', __name__, template_folder='templates/admin')
 # Default Routes
 @default.route('/', methods=['GET', 'POST'])
 def index():
-    posts = Post.query.all()
+    posts = Post.query.order_by(desc(Post.timestamp)).all()
     return render_template('index.html',
                            LST=constants.LST,
                            SOCIALLIST=constants.SOCIALLIST,
@@ -42,19 +44,24 @@ def security():
                            SOCIALLIST=constants.SOCIALLIST)
 
 
+# LoginManager
+@lm.user_loader
+def load_user(userid):
+    return userAdmin.get(userAdmin.id)
+
+
 # Amin Routes
 @admin.route('/admin', methods=['GET', 'POST'])
 def adminPage():
     form = updateForm()
 
-    day = date.today()
     if form.validate_on_submit():
         post = Post(body=form.newPost.data,
-                    timestamp=day.strftime("%A %d, %B %Y"))
+                    title=form.title.data,
+                    timestamp=datetime.utcnow())
         db.session.add(post)
         db.session.commit()
-        return render_template('admin.html',
-                               form=form)
+        return redirect(url_for('admin.adminPage'))
 
     return render_template('admin.html',
                            form=form)
@@ -86,6 +93,7 @@ def login():
 
 
 @admin.route('/logout')
+@login_required
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))

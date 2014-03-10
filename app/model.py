@@ -1,5 +1,7 @@
 from app import db, app
+from sqlalchemy import asc
 from hashlib import md5
+from datetime import date, datetime
 
 
 class userAdmin(db.Model):
@@ -33,29 +35,13 @@ class Post(db.Model):
     __tablename__ = "post"
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String)
-    timestamp = db.Column(db.String)
+    title = db.Column(db.String)
+    timestamp = db.Column(db.DateTime)
+
+    def day(self, timestamp):
+        day = date.today()
+        tday = day.strftime("%A %d, %B %Y")
+        return tday
 
     def __repr__(self):
         return "{0}".format(self.body)
-
-
-
-
-
-"""
-class Port(Base):
-        __tablename__   = 'port'
-        id                              = Column(Integer, primary_key=True)
-        server_id               = Column(Integer, ForeignKey('server.id'))
-        port_number             = Column(Integer)
-        protocol                = Column(String)
-        banner                  = Column(String)
-
-class Server(Base):
-        __tablename__   = 'server'
-        id                              = Column(Integer, primary_key=True)
-        project_id              = Column(Integer, ForeignKey('project.id'))
-        ip                              = Column(String)
-        domain                  = Column(String)
-        segment_name    = Column(String)
-        ports                   = relation(Port)"""

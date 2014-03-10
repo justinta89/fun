@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.login import LoginManager
 from config import basedir
 
 
@@ -8,6 +9,10 @@ app.config.from_object('config')
 
 # initialize DataBase
 db = SQLAlchemy(app)
+
+# LoginManager
+lm = LoginManager()
+lm.init_app(app)
 
 
 from app.views import default, admin
