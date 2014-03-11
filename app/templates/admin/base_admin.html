@@ -25,13 +25,16 @@
                     </div>
                     <div class="containter padding20">
                         <div class="place-right button-set span3">
-                            {% block logout %}{% endblock %}
                             <a href="{{ url_for("default.index") }}" class="button large info">home</a>
+                             {% if session.logged_in %}
+                                <a href="{{ url_for('admin.logout') }}" class="button info">Logout</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
                 <hr />
             </header>
+
 
             <!-- content -->
             <div class="container">

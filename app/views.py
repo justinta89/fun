@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, redirect, flash
-from flask import session, url_for, request
+from flask import session, url_for, request, abort
 from flask.ext.login import login_required, login_user
 from sqlalchemy import desc, asc
 from datetime import datetime, date
-from app import db, lm
+from app import db
 from app import constants
 from .forms import LoginForm, updateForm
 from .model import userAdmin, Post
@@ -44,16 +44,13 @@ def security():
                            SOCIALLIST=constants.SOCIALLIST)
 
 
-# LoginManager
-@lm.user_loader
-def load_user(userid):
-    return userAdmin.get(userAdmin.id)
-
-
-# Amin Routes
+# Admin Routes
 @admin.route('/admin', methods=['GET', 'POST'])
 def adminPage():
     form = updateForm()
+
+    if not session.get('logged_in'):
+        return redirect(url_for('admin.login'))
 
     if form.validate_on_submit():
         post = Post(body=form.newPost.data,
@@ -61,6 +58,7 @@ def adminPage():
                     timestamp=datetime.utcnow())
         db.session.add(post)
         db.session.commit()
+        flash("Post successfull")
         return redirect(url_for('admin.adminPage'))
 
     return render_template('admin.html',
@@ -73,19 +71,18 @@ def login():
     form = LoginForm()
     error = None
 
+    creds = userAdmin.query.first()
+    user = creds.uname
+    passwd = creds.passwd
+
     if request.method == 'POST':
-        session['username'] = request.form['username']
-        password = request.form['password']
-
-        res = userAdmin.query.first()
-
-        uname = res.uname
-        passwd = res.passwd
-
-        if session['username'] == uname and password == passwd:
-            return redirect('/admin')
+        if request.form['username'] != user:
+            error = "Invalid credentials"
+        elif request.form['password'] != passwd:
+            error = "Invalid credentials"
         else:
-            error = "Invalid Credentials"
+            session['logged_in'] = True
+            return redirect(url_for('admin.adminPage'))
 
     return render_template('login.html',
                            form=form,
@@ -93,7 +90,6 @@ def login():
 
 
 @admin.route('/logout')
-@login_required
 def logout():
-    session.pop('username', None)
-    return redirect(url_for('login'))
+    session.pop('logged_in', None)
+    return redirect(url_for('admin.login'))

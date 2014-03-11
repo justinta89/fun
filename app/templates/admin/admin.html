@@ -1,24 +1,31 @@
 {% extends 'base_admin.html' %}
 
 {% block title %}Admin{% endblock %}
-{% block logout %}
-    <a href="{{ url_for("admin.login") }}" class="button large info">Logout</a>
-{% endblock %}
+
 
 {% block body %}
-    <form action="" method='POST'>
-        {{ form.hidden_tag() }}
-        <div class="input-control textarea" data-role="input-control">
-            {{ form.title(size=30, placeholder="title") }}<br />
-            <br />
-            {{ form.newPost(size=100, placeholder="enter new post") }}<br />
-        </div>
-        <div class="input-control select span2">
-            <select>
-                <option>main</option>
-                <option>security</option>
-            </select>
-        </div><br />
-        <input class="button info" type="submit" value="post">
-    </form>
+    {% if session.logged_in %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            <h2 class="text-info">{{ message }}</h2>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="" method='POST'>
+            {{ form.hidden_tag() }}
+            <div class="input-control textarea" data-role="input-control">
+                {{ form.title(size=30, placeholder="title") }}<br />
+                <br />
+                {{ form.newPost(size=100, placeholder="enter new post") }}<br />
+            </div>
+            <div class="input-control select span2">
+                <select>
+                    <option>main</option>
+                    <option>security</option>
+                </select>
+            </div><br />
+            <input class="button info" type="submit" value="post">
+        </form>
+    {% endif %}
 {% endblock %}
