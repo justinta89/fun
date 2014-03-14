@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, redirect, flash
-from flask import session, url_for, request, abort
+from flask import (Blueprint, render_template, redirect, flash,
+                   session, url_for, request, abort)
 from flask.ext.login import login_required, login_user
 from sqlalchemy import desc, asc
 from datetime import datetime, date
@@ -59,6 +59,7 @@ def adminPage():
         db.session.add(post)
         db.session.commit()
         flash("Post successfull")
+        form = updateForm(formdata=None)
         return redirect(url_for('admin.adminPage'))
 
     return render_template('admin.html',

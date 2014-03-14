@@ -1,18 +1,29 @@
 {% extends "layout.html" %}
 {% block title %}justinta{% endblock %}
 
-{% block body %}
+{% block who %}
 <div class="grid fluid">
+    <div class="row">
+        <div class="place-left">
+            <h3>Who I am</h3>
+        </div>
+    </div>
+    <div class="place-left">
+        <p class="readable-text">stuff</p>
+    </div>
+{% endblock %}
+{% block body %}
     {% for post in posts %}
     <div class="row">
-        <div class="span8 bg-darkCyan padding5 text-center">
+        <div class="span12 bg-darkCyan padding5 text-center">
             <h3 class="fg-white">{{ post.title }}</h3>
         </div>
     </div>
-    <div class="span8 readable-text">
+    <div class="span10 readable-text">
        {{ post }}
         <br /><h6>{{ post.timestamp }}</h6>
     </div>
     {% endfor %}
 </div>
+<br />
 {% endblock body %}

@@ -40,11 +40,15 @@
             <hr />
         </header>
 
+        <!-- body -->
         <div class="container">
-            <div class="offset2">
+            {% block who %}
+            <p>stuff about me</p>
+            {% endblock %}
+            <div class="offset4">
                 {% block body %}
                 <p>Default Content. Need to change!</p>
-                {% endblock body %}
+                {% endblock %}
             </div>
         </div>
 
