@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <!-- bootstrap CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap.css') }}">
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap-responsive.css') }}">
 
-    <!-- bootstrap JS -->
+    <!-- JS -->
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
     <script src="{{ url_for('static', filename='docs/js/metro/metro.min.js') }}"></script>
@@ -16,7 +16,6 @@
 
 <body class="metro">
     <div class="container">
-
         <!-- header -->
         <header class="margin20 nrm nlm">
             <div class="clearfix">
@@ -43,7 +42,6 @@
         <!-- body -->
         <div class="container">
             {% block who %}
-            <p>stuff about me</p>
             {% endblock %}
             <div class="offset4">
                 {% block body %}
