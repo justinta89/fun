@@ -1,6 +1,5 @@
 from flask import (Blueprint, render_template, redirect, flash,
                    session, url_for, request, abort)
-from flask.ext.login import login_required, login_user
 from sqlalchemy import desc, asc
 from datetime import datetime, date
 from app import db
@@ -61,6 +60,27 @@ def adminPage():
         flash("Post successfull")
         form = updateForm(formdata=None)
         return redirect(url_for('admin.adminPage'))
+
+    return render_template('admin.html',
+                           form=form)
+
+
+@admin.route('/admin/<id>', methods=['GET', 'POST'])
+def editPost(id):
+    try:
+        post = Post.query.get(id)
+        form = updateForm(obj=post)
+        form.populate_obj(post)
+
+        if form.validate_on_submit():
+            post.title = form.title.data
+            post.body = form.newPost.data
+            db.session.add(post)
+            db.session.commit()
+            flash("successfulllly updated post")
+            return redirect(url_for('default.index'))
+    except:
+        return redirect(url_for('default.index'))
 
     return render_template('admin.html',
                            form=form)

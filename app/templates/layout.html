@@ -20,20 +20,18 @@
         <header class="margin20 nrm nlm">
             <div class="clearfix">
                 <div class="place-left">
-                    <h1>JustinTA</h1>
+                    <a href="{{ url_for("default.index") }}"><h1>JustinTA</h1></a>
                     <h3>sec stuff is fun</h3>
                 </div>
-                <div class="container padding20">
-                    <div class="button-set place-right span4">
+                <div class="container padding5">
+                    <nav class="horizontal-menu place-right span4">
+                        <ul>
                         {% for l in LST: %}
-                            {% if l == 'index' %}
-                            <a href="{{ url_for("default." + l) }}" class="button large info">home</a>
-                            {% else %}
-                            <a href="{{ url_for("default." + l) }}" class="button large info">{{ l }}</a>
-                            {% endif %}
+                            <li><a href="{{ url_for("default." + l) }}">{{ l }}</a></li>
                         {% endfor %}
-                        <a href="{{ url_for("admin.adminPage") }}" class="link info">admin</a>
-                    </div>
+                        </ul>
+
+                    </nav>
                 </div>
             </div>
             <hr />
@@ -44,9 +42,9 @@
             {% block who %}
             {% endblock %}
             <div class="offset4">
-                {% block body %}
+            {% block body %}
                 <p>Default Content. Need to change!</p>
-                {% endblock %}
+            {% endblock %}
             </div>
         </div>
 

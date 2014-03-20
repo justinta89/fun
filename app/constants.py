@@ -1,5 +1,4 @@
-LST = ["index",
-       "resume",
+LST = ["resume",
        "security"]
 
 SOCIALLIST = { "facebook": "http://www.facebook.com/cowpunk1",

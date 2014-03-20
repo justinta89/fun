@@ -24,12 +24,14 @@
                         <h1>Admin Portal</h1>
                     </div>
                     <div class="containter padding20">
-                        <div class="place-right button-set span3">
-                            <a href="{{ url_for("default.index") }}" class="button large info">home</a>
-                             {% if session.logged_in %}
-                                <a href="{{ url_for('admin.logout') }}" class="button info">Logout</a>
-                            {% endif %}
-                        </div>
+                        <nav class="horizontal-menu place-right">
+                            <ul>
+                                <li><a href="{{ url_for("default.index") }}">home</a></li>
+                                {% if session.logged_in %}
+                                <li><a href="{{ url_for('admin.logout') }}">logout</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
                     </div>
                 </div>
                 <hr />
