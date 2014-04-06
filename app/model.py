@@ -37,6 +37,7 @@ class Post(db.Model):
     body = db.Column(db.String)
     title = db.Column(db.String)
     timestamp = db.Column(db.DateTime)
+    page = db.Column(db.String)
 
     def day(self, timestamp):
         day = date.today()

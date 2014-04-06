@@ -16,7 +16,8 @@ admin = Blueprint('admin', __name__, template_folder='templates/admin')
 # Default Routes
 @default.route('/', methods=['GET', 'POST'])
 def index():
-    posts = Post.query.order_by(desc(Post.timestamp)).all()
+    posts = Post.query.filter_by(page='m').order_by(desc(Post.timestamp)).all()
+
     return render_template('index.html',
                            LST=constants.LST,
                            SOCIALLIST=constants.SOCIALLIST,
@@ -38,9 +39,11 @@ def resume():
 
 @default.route('/security')
 def security():
+    posts = Post.query.filter_by(page='s').order_by(desc(Post.timestamp)).all()
     return render_template('security.html',
                            LST=constants.LST,
-                           SOCIALLIST=constants.SOCIALLIST)
+                           SOCIALLIST=constants.SOCIALLIST,
+                           posts=posts)
 
 
 # Admin Routes
@@ -54,6 +57,7 @@ def adminPage():
     if form.validate_on_submit():
         post = Post(body=form.newPost.data,
                     title=form.title.data,
+                    page=form.dropdown.data,
                     timestamp=datetime.utcnow())
         db.session.add(post)
         db.session.commit()
@@ -77,7 +81,6 @@ def editPost(id):
             post.body = form.newPost.data
             db.session.add(post)
             db.session.commit()
-            flash("successfulllly updated post")
             return redirect(url_for('default.index'))
     except:
         return redirect(url_for('default.index'))

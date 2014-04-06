@@ -2,5 +2,8 @@
 {% block title %}security{% endblock %}
 
 {% block body %}
-    <p>security links and shit I like.</p>
+    {% for post in posts %}
+        <h2>{{ post.title }}<br /></h2>
+        {{ post.body }}
+    {% endfor %}
 {% endblock %}

@@ -20,10 +20,7 @@
                 {{ form.newPost(size=100, placeholder="enter new post") }}<br />
             </div>
             <div class="input-control select span2">
-                <select>
-                    <option>main</option>
-                    <option>security</option>
-                </select>
+                {{ form.dropdown() }}
             </div><br />
             <input class="button info" type="submit" value="post">
         </form>

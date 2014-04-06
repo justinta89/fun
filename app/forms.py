@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from wtforms import (TextField, PasswordField, BooleanField, SubmitField,
-                     TextAreaField)
+                     TextAreaField, SelectField)
 from wtforms.validators import Required
 
 
@@ -13,4 +13,5 @@ class LoginForm(Form):
 class updateForm(Form):
     newPost = TextAreaField('newPost', validators=None)
     title = TextField('title', validators=[Required()])
+    dropdown = SelectField('Page', choices=[('m', 'Main'), ('s', 'Security')])
     submit = SubmitField('Submit')
