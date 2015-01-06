@@ -1,11 +1,14 @@
-import os
-basedir = os.path.abspath(os.path.dirname(__file__))
 
-# database_uri is required by SQLAlchemy. it's the path of the db files
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 
-# migrate_pro is where we will store SQLAlchemy-migrate data files
-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+class Config(object):
+    DEBUG = False
+    CSRF_ENABLED = True
 
-CSRF_ENABLED = True
-SECRET_KEY = "Change in prod"
+
+class Dev(Config):
+    DEBUG = True
+    SECRET_KEY = "devKey"
+
+
+class Production(Config):
+    SECRET_KEY = '\xf2\xd6\xea\xd83\x03yg\x0e\x1e=}$\xd6\x02`\xc8e>\x8c'

@@ -1,39 +1,26 @@
 {% extends "layout.html" %}
 {% block title %}justinta{% endblock %}
 
-{% block who %}
-<div class="grid fluid">
-    <div class="row">
-        <div class="place-left">
-            <h3>Who I am</h3>
-        </div>
-    </div>
-    <div class="place-left">
-        <p class="readable-text span4">
-            I am a student at Utah Valley University, majoring in Netowrk
-            Administration and Security. I work for SecurityMetrics as a
-            Penetration Tester.
-        </p>
-    </div>
-{% endblock %}
+
 {% block body %}
-    {% if session.logged_in %}
-    <a href="{{ url_for("admin.adminPage") }}" class="link info">admin</a>
-    {% endif %}
-    {% for post in posts %}
-    <div class="row">
-        <div class="span12 bg-darkCyan padding5 text-center">
-            <h3 class="fg-white">{{ post.title }}</h3>
+    <p>this is the index page.</p>
+{% endblock %}
+<!--
+<div class="container grid fluid">
+     for post in posts
+        <div class="span10 padding5">
+            <h3>{{ post.title }}</h3>
         </div>
-    </div>
     <div class="span10 readable-text">
-       {{ post }}
-        {% if session.logged_in %}
+       {{ post }}<br />
+         if session.logged_in
             <br /><h6>{{ post.timestamp }}</h6>
             <a href="/admin/{{ post.id }}"><h6>edit</h6></a>
-        {% endif %}
+         endif
     </div>
-    {% endfor %}
+     endfor
+    <br />
 </div>
-<br />
-{% endblock body %}
+ endblock
+
+-->

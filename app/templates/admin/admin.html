@@ -4,7 +4,7 @@
 
 
 {% block body %}
-    {% if session.logged_in %}
+    <!--{ if session.logged_in }-->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
@@ -13,16 +13,15 @@
         {% endif %}
         {% endwith %}
         <form action="" method='POST'>
-            {{ form.hidden_tag() }}
             <div class="input-control textarea" data-role="input-control">
                 {{ form.title(size=30, placeholder="title") }}<br />
                 <br />
-                {{ form.newPost(size=100, placeholder="enter new post") }}<br />
+                {{ form.new_post(size=100, placeholder="enter new post") }}<br />
             </div>
             <div class="input-control select span2">
                 {{ form.dropdown() }}
             </div><br />
             <input class="button info" type="submit" value="post">
         </form>
-    {% endif %}
+    <!--{ endif }-->
 {% endblock %}

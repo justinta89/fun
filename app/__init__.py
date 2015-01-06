@@ -1,18 +1,12 @@
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
-from config import basedir
-
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('config.Dev')
 
-# initialize DataBase
-db = SQLAlchemy(app)
-
-
-from app.views import default, admin
-app.register_blueprint(default)
+from app.views.default_view import default
+from app.views.admin_view import admin
 app.register_blueprint(admin)
+app.register_blueprint(default)
 
-
-from app import views, constants
+from .db.model.post import Post
+from .db.model.user_admin import UserAdmin
