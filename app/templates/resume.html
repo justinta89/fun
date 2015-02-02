@@ -2,32 +2,5 @@
 {% block title %}resume{% endblock %}
 
 {% block body %}
-<div class="grid show-grid">
-    <div class="row">
-        <div class="span11 padding5 bg-darkCyan text-center">
-            <h2 class="fg-white">Resume</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="place-left">
-            <h3>Justin T. Anderson</h3>
-        </div>
-        <div class="place-right">
-            <h3>contact</h3>
-            <p>
-                1912 W 680 N Pleasant Grove, UT, 84062<br />
-                Justin.Anders89@gmail.com<br />
-                (801) 836-7365<br />
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="place-left">
-            <h3>Coding projects</h3>
-            {% for (k, v) in github.items() %}
-                <p><a href="{{ v }}" class="button small info" target="_blank">{{ k }}</a></p>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+<p>Stuff goes here</p>
 {% endblock %}

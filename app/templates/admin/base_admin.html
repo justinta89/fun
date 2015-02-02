@@ -1,52 +1,39 @@
 <html>
     <head>
-        <!-- bootstrap CSS -->
+        <!-- bootstrap CSS
         <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap.css') }}">
         <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap-responsive.css') }}">
+        -->
 
-        <!-- bootstrap JS -->
+        <!-- bootstrap JS
         <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
         <script src="{{ url_for('static', filename='docs/js/metro/metro.min.js') }}"></script>
 
         <script src="{{ url_for('static', filename='docs/js/load-metro.js') }}"></script>
         <script src="{{ url_for('static', filename='docs/js/metro/metro-notify.js') }}"></script>
+        -->
 
         <title>{% block title %}Default Title{% endblock %}</title>
     </head>
-    <body class="metro">
-        <div class="container">
+    <body>
 
-             <!-- header -->
-            <header class="margin20 nrm nlm">
-                <div class="clearfix">
-                    <div class="place-left">
-                        <h1>Admin Portal</h1>
-                    </div>
-                    <div class="containter padding20">
-                        <nav class="horizontal-menu place-right">
-                            <ul>
-                                <li><a href="{{ url_for("default.index") }}">home</a></li>
-                                {% if session.logged_in %}
-                                <li><a href="{{ url_for('admin.logout') }}">logout</a></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <hr />
-            </header>
+    <!-- header -->
+    <header>
+                <h1>Admin Portal</h1>
+                <ul>
+                    <li><a href="{{ url_for("default.index") }}">home</a></li>
+                    {% if session.logged_in %}
+                    <li><a href="{{ url_for('admin.logout') }}">logout</a></li>
+                    {% endif %}
+                </ul>
+        <hr />
+    </header>
 
 
-            <!-- content -->
-            <div class="container">
-                <div class="offset2">
-                    {% block body %}
-                        <p>Default Text</p>
-                    {% endblock %}
-                </div>
-            </div>
-
-        </div>
+    <!-- content -->
+    {% block body %}
+        <p>Default Text</p>
+    {% endblock %}
     </body>
 </html>

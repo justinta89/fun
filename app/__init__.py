@@ -8,5 +8,5 @@ from app.views.admin_view import admin
 app.register_blueprint(admin)
 app.register_blueprint(default)
 
-from .db.model.post import Post
-from .db.model.user_admin import UserAdmin
+from .model.post import Post
+from .model.user_admin import UserAdmin

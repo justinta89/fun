@@ -1,6 +1,6 @@
 from app.forms import LoginForm, UpdateForm
-from app.db.model import UserAdmin, Post, get_session
-from flask import render_template, Blueprint, session, flash, url_for
+from app.model import UserAdmin, Post, get_session
+from flask import render_template, Blueprint, session, flash, url_for, redirect
 from datetime import datetime
 
 admin = Blueprint('admin', __name__, template_folder='../templates/admin')
@@ -33,13 +33,10 @@ def adminPage():
 def login():
     form = LoginForm()
 
-    from app.db.api import Admin
-    user = form.username.data
-    passwd = form.password.data
+    u = form.username.data
+    p = form.password.data
 
-    u = Admin.get_username(user)
-    p = Admin.get_password(passwd)
-    if u and p:
+    if u == UserAdmin.username and p == UserAdmin.password:
         return redirect(url_for('adminPage'))
 
     return render_template('login.html',

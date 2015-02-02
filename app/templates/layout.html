@@ -2,37 +2,38 @@
 <html>
 
 <head>
-    <!-- CSS -->
+    <!-- CSS
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap.css') }}">
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap-responsive.css') }}">
+    -->
 
-    <!-- JS -->
+    <!-- JS
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
     <script src="{{ url_for('static', filename='docs/js/metro/metro.min.js') }}"></script>
+    -->
 
     <title>{% block title %}Default Title{% endblock %}</title>
 </head>
 
-<body class="metro">
-    <div class="container">
+<body>
+    <div>
         <!-- header -->
-        <header class="margin20 nrm nlm">
-            <div class="clearfix">
-                <div class="place-left">
+        <header>
+            <div>
+                <div>
                     <a href="{{ url_for("default.index") }}"><h1>JustinTA</h1></a>
-                    <h3 class="sub-secondary">sec stuff is fun</h3>
                 </div>
-                <div class="container padding5">
-                    <nav class="horizontal-menu place-right span6">
-                        <ul>
+                <div>
+                    <ul>
                         {% for l in LST: %}
                             <li><a href="{{ url_for("default." + l) }}" class="fg-hover-cyan">{{ l }}</a></li>
                         {% endfor %}
+                        {% if session.logged_in %}
                             <li><a href="{{ url_for("admin.adminPage") }}" class="fg-hover-cyan">admin</a></li>
-                        </ul>
+                        {% endif %}
+                    </ul>
 
-                    </nav>
                 </div>
             </div>
             <hr />
@@ -41,31 +42,19 @@
         <!-- body -->
         {% block body %}
         {% endblock %}
-        <!--<div class="container grid fluid">
-            {% block who %}
-            {% endblock %}
-            <div class="offset4">
-            block body
-                <p>Default Content. Need to change!</p>
-            endblock
-            </div>
-        </div>-->
 
        <!-- footer -->
-        <footer class="container">
+        <footer>
             <hr />
             <!-- Social Networking links-->
-            <div class="place-left">
+            <div>
+            <ul>
              {% for (k, v) in SOCIALLIST.items() %}
                 <a href="{{ v }}" target="_blank">
-                    <i class="icon-{{ k }}"></i>
+                    <li>{{ k }}</li>
                 </a>
              {% endfor %}
-            </div>
-            <div class="place-right">
-                <a href="http://metroui.org.ua" target="_blank">
-                    <p class="tertiary-text-secondary">&copy; 2014 Metro UI CSS</p>
-                </a>
+            </ul>
             </div>
        </footer>
 

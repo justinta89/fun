@@ -8,20 +8,17 @@
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
-            <h2 class="text-info">{{ message }}</h2>
+            <h2>{{ message }}</h2>
         {% endfor %}
         {% endif %}
         {% endwith %}
         <form action="" method='POST'>
-            <div class="input-control textarea" data-role="input-control">
-                {{ form.title(size=30, placeholder="title") }}<br />
-                <br />
-                {{ form.new_post(size=100, placeholder="enter new post") }}<br />
-            </div>
-            <div class="input-control select span2">
-                {{ form.dropdown() }}
-            </div><br />
-            <input class="button info" type="submit" value="post">
+            {{ form.title(size=30, placeholder="title") }}<br />
+            <br />
+            {{ form.new_post(size=100, placeholder="enter new post") }}<br />
+            {{ form.dropdown() }}
+            <br />
+            <input type="submit" value="post">
         </form>
     <!--{ endif }-->
 {% endblock %}

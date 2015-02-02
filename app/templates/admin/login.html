@@ -3,7 +3,7 @@
 {% block title %}Login{% endblock %}
 {% block body %}
     {% if error %}
-        <h2 class="text-alert">{{ error }}</h2>
+        <h2>{{ error }}</h2>
     {% endif %}
     <form method='POST'>
         {{ form.username(size=24, maxlength=40, placeholder="username") }}

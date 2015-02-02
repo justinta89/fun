@@ -18,7 +18,7 @@ class Post(Base):
         self.timestamp = timestamp
 
     def __str__(self):
-        return self.title
+        return "<{0}>".format(self.title)
 
     def __repr__(self):
-        return "<Title: {0}\nBody: {1}".format(self.title, self.body)
+        return "<Title: {0}, Body: {1}".format(self.title, self.body)
