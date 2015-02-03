@@ -26,9 +26,7 @@
                 </div>
                 <div>
                     <ul>
-                        {% for l in LST: %}
-                            <li><a href="{{ url_for("default." + l) }}" class="fg-hover-cyan">{{ l }}</a></li>
-                        {% endfor %}
+                        <li><a href="{{ url_for("default.resume") }}" class="fg-hover-cyan">resume</a></li>
                         {% if session.logged_in %}
                             <li><a href="{{ url_for("admin.adminPage") }}" class="fg-hover-cyan">admin</a></li>
                         {% endif %}

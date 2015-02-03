@@ -1,6 +1,3 @@
-LST = ["resume",
-       "security"]
-
 SOCIALLIST = { "facebook": "http://www.facebook.com/cowpunk1",
                "twitter": "http://www.twitter.com/cowpunk1",
                "github": "http://www.github.com/justinta89",

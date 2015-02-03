@@ -1,43 +1,54 @@
 from app.forms import LoginForm, UpdateForm
 from app.model import UserAdmin, Post, get_session
-from flask import render_template, Blueprint, session, flash, url_for, redirect
+from flask import (render_template, Blueprint, flash, url_for, redirect,
+                   session, request)
 from datetime import datetime
 
 admin = Blueprint('admin', __name__, template_folder='../templates/admin')
-sess = get_session()
+s = get_session()
 
 
-@admin.route('/admin', methods=['POST'])
+@admin.route('/admin', methods=['GET','POST'])
 def adminPage():
     form = UpdateForm()
-    # implement session for logging in.
-    if form.validate():
-        # create an api class in model to get rid of this stuff, maybe?
-        # have the api take the form data, which gets passed into class
-        #       in the model api
-        post = Post(body=form.new_post.data,
-                    title=form.title.data,
-                    page=form.dropdown.data,
-                    timestamp=datetime.utcnow())
+    if not session['logged_in']:
+        return redirect(url_for('admin.login'))
+    else:
+        if form.validate():
+            post = Post(body=form.new_post.data,
+                        title=form.title.data,
+                        page=form.dropdown.data,
+                        timestamp=datetime.utcnow())
 
-        sess.add(post)
-        sess.commit()
-        if sess.commit() is True:
-            flash('Success')
+            s.add(post)
+            s.commit()
+            if s.commit() is True:
+                flash('Success')
 
-    return render_template('admin.html',
-                           form=form)
+        return render_template('admin.html',
+                               form=form)
 
 
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    error = None
+    admin = s.query(UserAdmin).first()
 
-    u = form.username.data
-    p = form.password.data
+    if request.method == 'POST':
+        if request.form['username'] != admin.username:
+            error = 'Invalid Credentials'
+        elif request.form['password'] != admin.password:
+            error = 'Invalid Credentials'
+        else:
+            session['logged_in'] = True
+            flash('Logged in!')
+            return redirect(url_for('admin.adminPage'))
+    return render_template('login.html', form=form, error=error)
 
-    if u == UserAdmin.username and p == UserAdmin.password:
-        return redirect(url_for('adminPage'))
 
-    return render_template('login.html',
-                           form=form)
+@admin.route('/logout', methods=['GET'])
+def logout():
+    session.pop('logged_in', None)
+    flash('Logged Out')
+    return redirect(url_for('admin.login'))
