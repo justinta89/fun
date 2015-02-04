@@ -8,7 +8,7 @@ admin = Blueprint('admin', __name__, template_folder='../templates/admin')
 s = get_session()
 
 
-@admin.route('/admin', methods=['GET','POST'])
+@admin.route('/admin', methods=['GET', 'POST'])
 def adminPage():
     form = UpdateForm()
     if not session['logged_in']:
@@ -49,6 +49,5 @@ def login():
 
 @admin.route('/logout', methods=['GET'])
 def logout():
-    session.pop('logged_in', None)
-    flash('Logged Out')
+    session['logged_in'] = False
     return redirect(url_for('admin.login'))

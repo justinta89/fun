@@ -2,60 +2,49 @@
 <html>
 
 <head>
-    <!-- CSS
-    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap.css') }}">
-    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='docs/css/metro-bootstrap-responsive.css') }}">
-    -->
+    <!-- CSS -->
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/foundation.css') }}">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/normalize.css') }}">
 
-    <!-- JS
-    <script src="{{ url_for('static', filename='docs/js/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='docs/js/jquery/jquery.widget.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='docs/js/metro/metro.min.js') }}"></script>
-    -->
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
 
     <title>{% block title %}Default Title{% endblock %}</title>
 </head>
 
 <body>
-    <div>
-        <!-- header -->
-        <header>
-            <div>
-                <div>
-                    <a href="{{ url_for("default.index") }}"><h1>JustinTA</h1></a>
-                </div>
-                <div>
-                    <ul>
-                        <li><a href="{{ url_for("default.resume") }}" class="fg-hover-cyan">resume</a></li>
-                        {% if session.logged_in %}
-                            <li><a href="{{ url_for("admin.adminPage") }}" class="fg-hover-cyan">admin</a></li>
-                        {% endif %}
-                    </ul>
+    <header>
+        <a href="{{ url_for("default.index") }}"><h1>JustinTA</h1></a>
+        <ul>
+            <li><a href="{{ url_for("default.resume") }}" class="fg-hover-cyan">resume</a></li>
+            {% if session.logged_in %}
+                <li><a href="{{ url_for("admin.adminPage") }}" class="fg-hover-cyan">admin</a></li>
+            {% endif %}
+        </ul>
+        <hr />
+    </header>
 
-                </div>
-            </div>
-            <hr />
-        </header>
+    <!-- body -->
+    {% block body %}
+    {% endblock %}
 
-        <!-- body -->
-        {% block body %}
-        {% endblock %}
+   <!-- footer -->
+    <footer>
+        <hr />
+        <!-- Social Networking links-->
+        <ul>
+            {% for (k, v) in SOCIALLIST.items() %}
+            <a href="{{ v }}" target="_blank"><li>{{ k }}</li></a>
+        {% endfor %}
+        </ul>
+    </footer>
 
-       <!-- footer -->
-        <footer>
-            <hr />
-            <!-- Social Networking links-->
-            <div>
-            <ul>
-             {% for (k, v) in SOCIALLIST.items() %}
-                <a href="{{ v }}" target="_blank">
-                    <li>{{ k }}</li>
-                </a>
-             {% endfor %}
-            </ul>
-            </div>
-       </footer>
-
-    </div>
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/fastclick.js') }}"></script>
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 </html>

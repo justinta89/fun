@@ -20,20 +20,20 @@
 
     <!-- header -->
     <header>
-                <h1>Admin Portal</h1>
-                <ul>
-                    <li><a href="{{ url_for("default.index") }}">home</a></li>
-                    {% if session.logged_in %}
-                    <li><a href="{{ url_for('admin.logout') }}">logout</a></li>
-                    {% endif %}
-                </ul>
+        <h1>Admin Portal</h1>
+        <ul>
+            <li><a href="{{ url_for("default.index") }}">home</a></li>
+            {% if session.logged_in %}
+            <li><a href="{{ url_for('admin.logout') }}">logout</a></li>
+            {% endif %}
+        </ul>
         <hr />
     </header>
 
 
     <!-- content -->
     {% block body %}
-        <p>Default Text</p>
+    <p>Default Text</p>
     {% endblock %}
     </body>
 </html>
