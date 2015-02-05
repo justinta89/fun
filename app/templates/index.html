@@ -3,5 +3,8 @@
 
 
 {% block body %}
-<p>this is the index page.</p>
+    {% for p in post %}
+    <p>{{ p.title }}</p>
+    <p>{{ p.body }}</p>
+    {% endfor %}
 {% endblock %}

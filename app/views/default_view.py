@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from app.model import UserAdmin, Post, get_session
+from app.model import Post, get_session
 from app.constants import SOCIALLIST
 
 default = Blueprint('default', __name__, template_folder='../templates')
@@ -8,10 +8,10 @@ session = get_session()
 
 @default.route('/')
 def index():
-    p = session.query(Post).all()
+    post = session.query(Post).all()
     return render_template('index.html',
                            SOCIALLIST=SOCIALLIST,
-                           post=p)
+                           post=post)
 
 
 @default.route('/resume')

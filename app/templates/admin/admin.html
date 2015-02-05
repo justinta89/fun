@@ -7,12 +7,12 @@
     <!--{ if session.logged_in }-->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        {% for message in messages %}
-            <h2>{{ message }}</h2>
-        {% endfor %}
+            {% for message in messages %}
+                <h2>{{ message }}</h2>
+            {% endfor %}
         {% endif %}
         {% endwith %}
-        <form action="" method='POST'>
+        <form method='POST'>
             {{ form.title(size=30, placeholder="title") }}<br />
             <br />
             {{ form.new_post(size=100, placeholder="enter new post") }}<br />

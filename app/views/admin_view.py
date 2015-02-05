@@ -25,8 +25,8 @@ def adminPage():
             if s.commit() is True:
                 flash('Success')
 
-        return render_template('admin.html',
-                               form=form)
+    return render_template('admin.html',
+                           form=form)
 
 
 @admin.route('/login', methods=['GET', 'POST'])

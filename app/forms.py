@@ -1,4 +1,4 @@
-from wtforms import (Form, TextField, PasswordField, BooleanField, SubmitField,
+from wtforms import (Form, TextField, PasswordField, SubmitField,
                      TextAreaField, SelectField)
 from wtforms.validators import Required
 
