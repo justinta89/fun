@@ -19,7 +19,6 @@ def adminPage():
                         title=form.title.data,
                         page=form.dropdown.data,
                         timestamp=datetime.utcnow())
-
             s.add(post)
             s.commit()
             if s.commit() is True:
